@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Film Launcher</title>
+  </head>
+  <body>
+    <h2>Film Launcher - Pledge for a content!</h2>
+    <form action="/payments/create-checkout-session" method="POST">
+      <input
+        type="number"
+        name="amount"
+        min="1"
+        required
+        placeholder="Amount (USD)"
+      />
+      <button type="submit">Pledge</button>
+    </form>
+  </body>
+</html>
