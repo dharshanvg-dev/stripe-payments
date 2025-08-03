@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import paymentRouter from "./routes/payment.route.js";
+import cors from "cors";
 
 dotenv.config();
 const port = process.env.port ? Number(process.env.port) : 3000;
@@ -11,6 +12,7 @@ const port = process.env.port ? Number(process.env.port) : 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.use(cors());
 const app = express();
 
 //Middlewares
