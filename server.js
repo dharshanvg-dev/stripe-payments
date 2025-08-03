@@ -15,8 +15,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cors());
 
+//Handling webhook that comes from stripe
+app.use("/payments/webhook", express.raw({ type: "application/json" }));
+
 //Middlewares
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 //route to check the API health
@@ -24,7 +28,7 @@ app.get("/health", async (req, res) => {
   res.status(200).send("Payment service is healthy");
 });
 
-//middleware to route to Payments
+//Mount payment routes at /payments
 app.use("/payments", paymentRouter);
 
 // Only listen in development
