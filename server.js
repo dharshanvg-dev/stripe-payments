@@ -12,8 +12,8 @@ const port = process.env.port ? Number(process.env.port) : 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(cors());
 const app = express();
+app.use(cors());
 
 //Middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +27,12 @@ app.get("/health", async (req, res) => {
 //middleware to route to Payments
 app.use("/payments", paymentRouter);
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+export default app;
+
+// Only listen in development
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
