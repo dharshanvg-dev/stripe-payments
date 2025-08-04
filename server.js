@@ -16,7 +16,7 @@ const app = express();
 app.use(cors());
 
 //Handling webhook that comes from stripe
-app.use("/payments/webhook", express.raw({ type: "application/json" }));
+// app.use("/payments/webhook", express.raw({ type: "application/json" }));
 
 //Middlewares
 app.use(express.urlencoded({ extended: true }));

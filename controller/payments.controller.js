@@ -28,6 +28,7 @@ export const stripeCheckoutSession = async (req, res) => {
       success_url: `${process.env.DOMAIN}/success.html`,
       cancel_url: `${process.env.DOMAIN}/cancel.html`,
     });
+    console.log("####Create checkout response", session);
     res.redirect(303, session.url);
   } catch (err) {
     console.log(err.message);
